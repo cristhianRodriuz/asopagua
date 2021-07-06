@@ -720,7 +720,6 @@
             e.preventDefault();
             if ($("#clienteRegistrado").val() != '') {
                 let clienteRec = $("#clienteRegistrado").val();
-                console.log(clienteRec);
                 let detallePedido = JSON.parse(localStorage.getItem("cart_oficial"));
                 let totalPago = $(".txtTotal").html();
                 $.ajax({
@@ -733,11 +732,12 @@
                         totalPago
                     },
                     success: function(response) {
+                        console.log(response);
                         let dataResponse = JSON.parse(response);
                         Swal.fire({
                             title: "Procesando pedido",
                             html: "Estamos procesando su pedido. Esto puede tardar un momento",
-                            timer: 10000,
+                            timer: 1000,
                             timerProgressBar: true,
                             didOpen: () => {
                                 Swal.showLoading()
@@ -757,7 +757,7 @@
                         }).then(() => {
                             if (dataResponse.length > 0) {
                                 localStorage.setItem('detalle_pedido', JSON.stringify(dataResponse[0]));
-                                window.location.href = "confirmacion";
+                                // window.location.href = "confirmacion";
                             }
                             // if (resJson.verificado == false) {
                             //     console.log(resJson.data);
@@ -884,7 +884,7 @@
                                     Swal.fire({
                                         title: "Verificando su información",
                                         html: "Esperando a que el sistema verifique los datos. Esto puede tardar un momento",
-                                        timer: 10000,
+                                        timer: 1000,
                                         timerProgressBar: true,
                                         didOpen: () => {
                                             Swal.showLoading()

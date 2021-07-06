@@ -56,7 +56,7 @@ session_start();
                 }else{
                     include 'views/modulos/login.php';
                 }
-            }else if($url[0] == "dashboard" || $url[0] == "categorias" || $url[0] == "usuarios" || $url[0] == "clientes" || $url[0] == "productos" || $url[0] == "pedidos" || $url == "distribuidores" || $url[0] == "noticias" || $url[0] == "logout" || $url[0] == "pedidos-pendientes" || $url[0] == "pedidos-verificados" || $url[0] == "pedidos-enviados" || $url[0] == "cart" || $url[0] == '' || $url[0] == "inicio" || $url[0] == "catalogo-productos" || $url[0] == "confirmacion"){
+            }else if($url[0] == "dashboard" || $url[0] == "categorias" || $url[0] == "usuarios" || $url[0] == "clientes" || $url[0] == "productos" || $url[0] == "pedidos" || $url == "distribuidores" || $url[0] == "noticias" || $url[0] == "logout" || $url[0] == "pedidos-pendientes" || $url[0] == "pedidos-verificados" || $url[0] == "pedidos-enviados" || $url[0] == "cart" || $url[0] == '' || $url[0] == "inicio" || $url[0] == "catalogo-productos" || $url[0] == "confirmacion" || $url[0] == "mensajes" || $url[0] == "noticias"){
                 $pathView = VW.MOD.$url[0].'.php';
                 if($url[0] == "cart" || $url[0] == '' || $url[0] == "inicio" || $url[0] == "catalogo-productos" || $url[0] == "confirmacion"){
                     require $pathView;

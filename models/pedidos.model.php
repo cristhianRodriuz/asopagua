@@ -78,11 +78,28 @@ class ModelPedidos{
                 $stmt = Conexion::conectar()->prepare("SELECT * FROM pedidos p INNER JOIN clientes c ON c.id = p.id_cliente WHERE codigo=:codigo");
                 $stmt->execute(["codigo" => $newCodigoPedido]);
                 if($stmt->rowCount()> 0){
+                    ModelPedidos::mdlSaveDetallePedido($stmt->fetchColumn(0),$detallePedido);
                     return $stmt->fetchAll();
                 }
             }
         }catch(PDOException $e){
-
+            return "Fallaste: ".$e->getMessage();
+        }
+    }
+    public static function mdlSaveDetallePedido($idPedido,$detallePedido){
+        $key = array();
+        foreach($detallePedido as $clave => $valor){
+            array_push($key,$clave);
+        }
+        $sql = "INSERT INTO detalle_pedido VALUES(0,:idPedido,:nombreProducto,:cantidad,:precio)";
+        for($i = 0; $i < count($key); $i++){
+            $stmt = Conexion::conectar()->prepare($sql);
+            $stmt->execute([
+                "idPedido" => $idPedido,
+                "nombreProducto" => $detallePedido[$key[$i]]["nombre"], 
+                "cantidad" => $detallePedido[$key[$i]]["cantidad"],
+                "precio" => $detallePedido[$key[$i]]["precio"]
+                ]);
         }
     }
     public static function getNewCodigo(){

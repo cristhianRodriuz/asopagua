@@ -22,5 +22,11 @@ $(document).ready(function() {
       }
     }
   })
+  $("#dataTableMensajesDistribuidor").DataTable({
+    "ajax": "ajax/dataTableMensajesDistribuidor.php"
+  })
+  $("#dataTableNoticias").DataTable({
+    "ajax": "ajax/dataTableNoticias.php"
+  })
 
 });
