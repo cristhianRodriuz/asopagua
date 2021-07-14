@@ -57,9 +57,12 @@
 
                                                 </div>
                                                 <div class="form-group mb-3">
-                                                    <label for="floatingEmail">Descripcion</label>
-                                                    <textarea type="text" name="regDescripcionNoticia" id="regDescripcionNoticia" class="form-control" rows="5"></textarea>
-
+                                                    <label for="regDescripcionNoticia">Descripcion</label>
+                                                    <input type="text" name="regDescripcionNoticia" id="regDescripcionNoticia" class="form-control form-control-lg" placeholder="20 palabras max.">
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="regDesarrolloNoticia">Desarrollo</label>
+                                                    <textarea name="regDesarrolloNoticia" id="regDesarrolloNoticia" class="form-control" rows="7"></textarea>
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <label for="regCreadoPor">Registrado por</label>
@@ -103,6 +106,7 @@ $().ready(function(){
                     $(".noticia").val(data.id);
                     $("#regTituloNoticia").val(data.titulo);
                     $("#regDescripcionNoticia").val(data.descripcion);
+                    $("#regDesarrolloNoticia").val(data.desarrollo);
                     $("#regCreadoPor").val(data.publicador);
                     $("#imgNoticia").attr('src', imgUrl + data.imagen);
                     $("#imgNoticia").attr('data-title',data.imagen);
@@ -117,6 +121,7 @@ $().ready(function(){
             $(".titleModal").html("Nueva Noticia");
             $("#regTituloNoticia").val("");
             $("#regDescripcionNoticia").val("");
+            $("#regDesarrolloNoticia").val("");
             $(".btnEditAdd").html("Registrar");
             $("#imgNoticia").attr('src', imgUrl + "noticiasDefault.png");
             $(".btnEliminar").hide();
@@ -180,6 +185,7 @@ $().ready(function(){
             }
             formData.append("regTituloNoticia", $("#regTituloNoticia").val());
             formData.append("regDescripcionNoticia", $("#regDescripcionNoticia").val());
+            formData.append("regDesarrolloNoticia",$("#regDesarrolloNoticia").val());
             formData.append("regCreadoPor", $("#regCreadoPor").val());
             console.log($(".noticia").val());
             $.ajax({

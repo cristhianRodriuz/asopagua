@@ -18,6 +18,10 @@ class AjaxNoticias{
         $respuesta = array("verificado" => ControllerNoticias::ctrEliminarNoticias($idEliminar));
         echo json_encode($respuesta);
     }
+    public function ajaxGetAllNoticias(){
+        $res = ControllerNoticias::ctrGetNoticias();
+        echo json_encode($res);
+    }
 }
 if(isset($_POST["idNoticia"])){
     $getNoticia = new AjaxNoticias();
@@ -51,13 +55,15 @@ if (isset($_POST["uploadImageNoticia"])) {
             "id" => $_POST["editIDNoticia"],
             "titulo" => $_POST["regTituloNoticia"],
             "descripcion" => $_POST["regDescripcionNoticia"],
+            "desarrollo" => $_POST["regDesarrolloNoticia"],
             "publicador" => $_POST["regCreadoPor"]
-        ]);
-        $noticias->ajaxEditarNoticia($datos);
-    } else {
-        array_push($datos,[
-            "titulo" => $_POST["regTituloNoticia"],
-            "descripcion" => $_POST["regDescripcionNoticia"],
+            ]);
+            $noticias->ajaxEditarNoticia($datos);
+        } else {
+            array_push($datos,[
+                "titulo" => $_POST["regTituloNoticia"],
+                "descripcion" => $_POST["regDescripcionNoticia"],
+                "desarrollo" => $_POST["regDesarrolloNoticia"],
             "publicador" => $_POST["regCreadoPor"]
         ]);
 
@@ -67,4 +73,8 @@ if (isset($_POST["uploadImageNoticia"])) {
 if(isset($_POST["idEliminarNoticia"])){
     $eliminarNoticia = new AjaxNoticias();
     $eliminarNoticia->ajaxEliminarNoticias($_POST["idEliminarNoticia"]);
+}
+if(isset($_POST["getAllNoticias"])){
+    $getAllNotices = new AjaxNoticias();
+    $getAllNotices->ajaxGetAllNoticias();
 }

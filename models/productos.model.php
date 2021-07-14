@@ -1,5 +1,6 @@
 <?php
 require 'conexion.php';
+date_default_timezone_set("America/Guayaquil");
 class ModelProducto
 {
    public static function mdlGetProductos()
